@@ -1,3 +1,7 @@
+#Файл зависимостей
+
+
+
 """
 Django settings for project BLL.
 
