@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Список проектов</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название проекта</th>
+                <th>Информация</th>
+                <th>Дата создания проекта</th>
+                 {% if user.is_superuser or user.role.name == 'Админ' %}
+                <th>Действия</th>
+                 {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.information }}</td>
+                    <td>{{ article.release_date }}</td>
+                    {% if user.is_superuser or user.role.name == 'Админ' %}
+                    <td>
+                            <a href="{% url 'article_edit' article.pk %}">Редактировать</a> |
+                            <a href="{% url 'article_delete' article.pk %}">Удалить</a> |
+                            <a href="{% url 'article_create' %}">Создать проект</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

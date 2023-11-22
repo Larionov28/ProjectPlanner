@@ -1,0 +1,73 @@
+/* Стилизация для заголовков h1 */
+h1 {
+    font-size: 54px; /* Размер шрифта */
+    font-weight: bold; /* Полужирное начертание */
+    color: #C3073F; /* Цвет текста */
+    margin-bottom: 10px; /* Отступ снизу */
+    text-align: center;
+}
+
+/* Стилизация для заголовков h2 */
+a {
+   color: #374785; /* Цвет текста ссылки */
+    text-decoration: none; /* Удаление подчеркивания по умолчанию */
+    transition: color 0.2s, font-size 0.3s; /* Плавное изменение цвета при наведении */
+}
+
+a:hover {
+    color: #66FCF1; /* Цвет текста ссылки при наведении */
+    font-size: 120%; /* Увеличение размера шрифта при наведении (пример: 120%) */
+}
+body {
+    background-color: #F2F2F2; /* Замените на желаемый цвет */
+}
+
+/* Изменение цвета фона контейнера и его дочерних элементов */
+body.container {
+    background-color: #F2F2F2; /* Замените на желаемый цвет */
+}
+
+/* Изменение цвета фона для дочерних элементов списка */
+body.container .list-group {
+    background-color: #F2F2F2; /* Замените на желаемый цвет */
+}
+
+/* Изменение цвета фона для элементов списка */
+body.container .list-group li {
+    background-color: #F2F2F2; /* Замените на желаемый цвет */
+}
+
+
+.btn {
+	display: inline-block;
+	box-sizing: border-box;
+	padding: 0 20px;
+	margin: 0 15px 15px 0;
+	outline: none;
+	border: none;
+	border-radius: 6px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 17px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #fff;
+	background-color: #1a73e8;
+	cursor: pointer;
+	user-select: none;
+	appearance: none;
+	touch-action: manipulation;
+}
+.btn:focus-visible {
+	box-shadow: 0 0 0 2px #666;
+}
+.btn:hover {
+	background-color: #66FCF1;
+}
+.btn:active {
+	transform: scale(0.96);
+}
+.btn:disabled {
+	pointer-events: none;
+	opacity: 0.65;
+}
