@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Список компаний</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Имя компании</th>
+                <th>Сотрудники</th>
+                <th>Проекты</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for company in companies %}
+                <tr>
+                    <td>{{ company.title }}</td>
+                    <td>{{ company.employee }}</td>
+                    <td>{{ company.project }}</td>
+                    <td>
+                        <a href="{% url 'company_edit' company.id %}">Редактировать</a> |
+                        <a href="{% url 'company_delete' company.id %}">Удалить</a> |
+                        <a href="{% url 'company_create' %}">Создать компанию</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,13 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
-from .models import Region, Role, Article
+from .models import Region, Role, Article, Task, Company
 
 admin.site.register(Region)
 admin.site.register(Role)
 admin.site.register(Article)
+admin.site.register(Task)
+admin.site.register(Company)
 
 User = get_user_model()
+
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Список задач</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Название задачи</th>
+                <th>Информация</th>
+                <th>Статус</th>
+                <th>Дата создания задачи</th>
+                 {% if user.is_superuser or user.role.name == 'Админ' or user.role.name == 'Руководитель' or user.role.name == 'Менеджер проекта' or user.role.name == 'Сотрудник' %}
+                <th>Действия</th>
+                 {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.information }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.release_date }}</td>
+                    {% if user.is_superuser or user.role.name == 'Админ' or user.role.name == 'Руководитель' or user.role.name == 'Менеджер проекта' or user.role.name == 'Сотрудник' %}
+                    <td>
+                            <a href="{% url 'task_edit' task.pk %}">Редактировать</a> |
+                            <a href="{% url 'task_delete' task.pk %}">Удалить</a> |
+                            <a href="{% url 'task_create' %}">Создать задачу</a>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -2,13 +2,13 @@
 
 {% block content %}
   <h2>Подтверждение удаления</h2>
-  <p>Вы уверены, что хотите удалить этого пользователя?</p>
-  <p>Пользователь: {{ user.username }}</p>
+  <p>Вы уверены, что хотите удалить эту задачу?</p>
+  <p>Название задачи: {{ object.title }}</p>
   <form method="post">
     {% csrf_token %}
     <button class="btn">Подтвердить удаление</button>
   </form>
   <br>
-  <a href="{% url 'user_list' %}">Отмена</a>
+  <a href="{% url 'task_list' %}">Отмена</a>
 </div>
 {% endblock %}

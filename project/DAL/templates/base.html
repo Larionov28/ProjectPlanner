@@ -10,10 +10,10 @@
 <body class="container">
 <ul class="list-group">
     <li class="list-group-item">
-        Пользователь: {{ user }}
-    </li>
-    <li class="list-group-item">
-        <a href="{% url 'home' %}"> На главную страницу</a>
+        <div class="d-flex justify-content-between align-items-center">
+                <span><a href="{% url 'home' %}">На главную страницу</a></span>
+                Пользователь: {{ user }}
+        </div>
     </li>
 </ul>
 

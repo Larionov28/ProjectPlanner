@@ -7,8 +7,9 @@
             <tr>
                 <th>Название проекта</th>
                 <th>Информация</th>
+                <th>Задачи</th>
                 <th>Дата создания проекта</th>
-                 {% if user.is_superuser or user.role.name == 'Админ' %}
+                 {% if user.is_superuser or user.role.name == 'Админ' or user.role.name == 'Руководитель' or user.role.name == 'Менеджер проекта' %}
                 <th>Действия</th>
                  {% endif %}
             </tr>
@@ -18,8 +19,9 @@
                 <tr>
                     <td>{{ article.title }}</td>
                     <td>{{ article.information }}</td>
+                    <td>{{ article.tasks }}</td>
                     <td>{{ article.release_date }}</td>
-                    {% if user.is_superuser or user.role.name == 'Админ' %}
+                    {% if user.is_superuser or user.role.name == 'Админ' or user.role.name == 'Руководитель' or user.role.name == 'Менеджер проекта' %}
                     <td>
                             <a href="{% url 'article_edit' article.pk %}">Редактировать</a> |
                             <a href="{% url 'article_delete' article.pk %}">Удалить</a> |

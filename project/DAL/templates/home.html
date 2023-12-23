@@ -5,14 +5,22 @@
     <hr>
     {% if user.is_authenticated %}
         {% if user.role.name == 'Админ' or user.is_superuser %}
-            <a href="{% url 'user_list' %}">Пользователи</a><br><br>
+            <a href="{% url 'admin:index' %}">Администрирование</a><br><br>
+            <a href="{% url 'company_list' %}">Компании</a><br><br>
+            <a href="{% url 'user_list' %}">Сотрудники</a><br><br>
             <a href="{% url 'article_list' %}">Проект</a><br><br>
-            <a href="{% url 'article_create' %}">Создать проект</a><br><br>
-        {% elif user.role.name == 'Автор' %}
+            <a href="{% url 'task_list' %}">Задачи</a><br><br>
+        {% elif user.role.name == 'Руководитель' %}
+            <a href="{% url 'company_list' %}">Компании</a><br><br>
+            <a href="{% url 'user_list' %}">Сотрудники</a><br><br>
             <a href="{% url 'article_list' %}">Проект</a><br><br>
-            <a href="{% url 'article_create' %}">Создать проект</a><br><br>
-        {% elif user.role.name == 'Пользователь' %}
-             <a href="{% url 'article_list' %}">Проект</a><br><br>
+            <a href="{% url 'task_list' %}">Задачи</a><br><br>
+        {% elif user.role.name == 'Менеджер проекта' %}
+            <a href="{% url 'article_list' %}">Проект</a><br><br>
+            <a href="{% url 'task_list' %}">Задачи</a><br><br>
+        {% elif user.role.name == 'Сотрудник' %}
+            <a href="{% url 'article_list' %}">Проект</a><br><br>
+            <a href="{% url 'task_list' %}">Задачи</a><br><br>
         {% endif %}
     <a href="{% url 'edit_profile' %}">Изменить данные</a><br><br>
     <a href="{% url 'logout' %}">Выйти</a>

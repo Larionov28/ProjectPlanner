@@ -1,13 +1,13 @@
+from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, UserChangeForm
-from django import forms
 from django.shortcuts import redirect, render
-from django.utils.translation import gettext_lazy as _
 from django.views import View
-from .models import Article
-from .models import Region, Role
+
+from .models import Article, Task, Company, Region, Role
 
 User = get_user_model()
+
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -20,6 +20,7 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'region', 'role']
 
+
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
@@ -30,15 +31,18 @@ class ArticleForm(forms.ModelForm):
             'release_date': forms.DateInput(attrs={'class': 'form-control'}),
         }
 
+
 class UserCreationForm(UserCreationForm):
     email = forms.EmailField(
-        label=("Email"),
+        label="Email",
         max_length=254,
         widget=forms.EmailInput(attrs={'autocomplete': 'email'})
     )
+
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ("username", "email")
+
 
 class CustomUserCreationForm(UserCreationForm):
     region = forms.ModelChoiceField(queryset=Region.objects.all())
@@ -54,6 +58,7 @@ class CustomUserCreationForm(UserCreationForm):
             user.save()
         return user
 
+
 class CustomUserEditForm(UserChangeForm):
     region = forms.ModelChoiceField(
         queryset=Region.objects.all(),
@@ -65,10 +70,13 @@ class CustomUserEditForm(UserChangeForm):
         model = User
         fields = ('username', 'email', 'region')
 
+
+
 class CustomPasswordChangeForm(PasswordChangeForm):
     class Meta:
         model = User
         fields = ('old_password', 'new_password1', 'new_password2')
+
 
 class EditProfile(View):
     template_name = 'edit_profile.html'
@@ -77,7 +85,8 @@ class EditProfile(View):
         user_edit_form = CustomUserEditForm(instance=request.user)
         password_change_form = CustomPasswordChangeForm(user=request.user)
 
-        return render(request, self.template_name, {'user_edit_form': user_edit_form, 'password_change_form': password_change_form})
+        return render(request, self.template_name,
+                      {'user_edit_form': user_edit_form, 'password_change_form': password_change_form})
 
     def post(self, request):
         user_edit_form = CustomUserEditForm(request.POST, instance=request.user)
@@ -92,4 +101,5 @@ class EditProfile(View):
                 password_change_form.save()
                 return redirect('edit_profile')
 
-        return render(request, self.template_name, {'user_edit_form': user_edit_form, 'password_change_form': password_change_form})
+        return render(request, self.template_name,
+                      {'user_edit_form': user_edit_form, 'password_change_form': password_change_form})

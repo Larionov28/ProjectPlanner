@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Создание пользователя</h1>
+    <h1>Создание сотрудника</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn">Создать пользователя</button>
+        <button class="btn">Создать сотрудника</button>
     </form>
     <br>
-    <a href="{% url 'user_list' %}">Вернуться к списку пользователей</a>
+    <a href="{% url 'user_list' %}">Вернуться к списку сотрудников</a>
 </div>
 {% endblock %}
