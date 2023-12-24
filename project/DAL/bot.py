@@ -1,27 +1,20 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+from telegram.ext import ApplicationBuilder
+import asyncio
 
 
-async def handle_messages(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    text = update.message.text.lower()
+async def send_initial_greeting(bot, chat_id):
+    message1 = "Новая задача создана"
+    message2 = "Задача обновлена"
+    message3 = "Задача удалена"
+    await bot.send_message(chat_id=chat_id, text=message2)
 
-    if "hello" in text:
-        await update.message.reply_text("Здравствуйте, Артём Романович!")
-    elif "howareyou" in text:
-        await update.message.reply_text("Хорошо, у вас как?")
-    elif "help" in text:
-        await update.message.reply_text("Руководство использования:\n1)При вводе текста /hello, бот приветствует "
-                                        "вас;\n2)При вводе текста /howareyou, бот отвечает 'Хорошо, "
-                                        "как у вас?';\n3)При вводе текста /help, бот выводит руководство "
-                                        "использования;\n4)При вводе любого другого текста, бот переотправляет "
-                                        "сообщение;\n5)Также у бота есть встроенные команды.")
-    else:
-        # Если сообщение не соответствует заданным шаблонам, эхо-ответ
-        await update.message.reply_text(update.message.text)
 
-app = ApplicationBuilder().token("6732230608:AAFONjgw8ovNn_kmvBWIXxHDxtwpzlolNG4").build()
+async def main():
+    app = ApplicationBuilder().token("6732230608:AAEaMVcxt4QscAZ5Tb5ovmqhCOEeCGuUV2A").build()  # токен бота, обновлять
 
-# Добавляем обработчик сообщений с использованием filters
-app.add_handler(MessageHandler(filters.Regex(r'.*'), callback=handle_messages))
+    chat_id = "1380883194"
+    await send_initial_greeting(app.bot, chat_id)
 
-app.run_polling()
+
+if __name__ == "__main__":
+    asyncio.run(main())

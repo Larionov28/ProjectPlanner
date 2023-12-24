@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm, User
 from django.shortcuts import redirect, render
 from django.views import View
 
-from .models import Article, Task, Company, Region, Role
+from .models import Article, Region, Role
 
 User = get_user_model()
 
@@ -69,7 +69,6 @@ class CustomUserEditForm(UserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'region')
-
 
 
 class CustomPasswordChangeForm(PasswordChangeForm):

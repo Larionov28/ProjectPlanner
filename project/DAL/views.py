@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 from .forms import CustomUserCreationForm, CustomUserEditForm
 from django.contrib import messages
 from .models import User, Article, Task, Company
-from .forms import ArticleForm, UserEditForm
+from .forms import UserEditForm
 from django.views.generic.edit import UpdateView, DeleteView, CreateView
 
 from django.shortcuts import render
@@ -200,5 +200,3 @@ class EditProfileChangePassword(PasswordChangeView):
 
 def session_limit(request):
     return render(request, 'session_limit.html')
-
-
